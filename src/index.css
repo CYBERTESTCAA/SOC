@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* SOC Dark Theme */
+    --background: 220 20% 7%;
+    --foreground: 210 20% 95%;
+
+    --card: 220 18% 10%;
+    --card-foreground: 210 20% 95%;
+
+    --popover: 220 18% 12%;
+    --popover-foreground: 210 20% 95%;
+
+    --primary: 199 89% 48%;
+    --primary-foreground: 220 20% 7%;
+
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 210 20% 90%;
+
+    --muted: 220 15% 18%;
+    --muted-foreground: 215 15% 55%;
+
+    --accent: 199 89% 48%;
+    --accent-foreground: 220 20% 7%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
+    --ring: 199 89% 48%;
+
+    --radius: 0.5rem;
+
+    /* SOC Specific Colors */
+    --critical: 0 84% 60%;
+    --critical-foreground: 0 0% 100%;
+    --high: 25 95% 53%;
+    --high-foreground: 0 0% 100%;
+    --medium: 45 93% 47%;
+    --medium-foreground: 220 20% 7%;
+    --low: 142 71% 45%;
+    --low-foreground: 0 0% 100%;
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 100%;
+
+    /* Glow Effects */
+    --glow-primary: 199 89% 48%;
+    --glow-critical: 0 84% 60%;
+    --glow-success: 142 71% 45%;
+
+    /* Sidebar */
+    --sidebar-background: 220 20% 5%;
+    --sidebar-foreground: 210 20% 85%;
+    --sidebar-primary: 199 89% 48%;
+    --sidebar-primary-foreground: 220 20% 7%;
+    --sidebar-accent: 220 15% 12%;
+    --sidebar-accent-foreground: 210 20% 95%;
+    --sidebar-border: 220 15% 15%;
+    --sidebar-ring: 199 89% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 600;
+  }
+
+  code, pre, .mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .glow-primary {
+    box-shadow: 0 0 20px -5px hsl(var(--glow-primary) / 0.4);
+  }
+
+  .glow-critical {
+    box-shadow: 0 0 20px -5px hsl(var(--glow-critical) / 0.5);
+  }
+
+  .glow-success {
+    box-shadow: 0 0 20px -5px hsl(var(--glow-success) / 0.4);
+  }
+
+  .card-soc {
+    @apply bg-card border border-border rounded-lg;
+    background: linear-gradient(180deg, hsl(220 18% 11%) 0%, hsl(220 18% 9%) 100%);
+  }
+
+  .metric-card {
+    @apply card-soc p-4 relative overflow-hidden;
+  }
+
+  .metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary)), transparent);
+    opacity: 0.5;
+  }
+
+  .pulse-dot {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(180 70% 50%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .status-indicator {
+    @apply w-2 h-2 rounded-full;
+  }
+
+  .status-indicator.critical {
+    @apply bg-[hsl(var(--critical))];
+    box-shadow: 0 0 8px hsl(var(--critical) / 0.6);
+  }
+
+  .status-indicator.high {
+    @apply bg-[hsl(var(--high))];
+    box-shadow: 0 0 8px hsl(var(--high) / 0.6);
+  }
+
+  .status-indicator.medium {
+    @apply bg-[hsl(var(--medium))];
+    box-shadow: 0 0 8px hsl(var(--medium) / 0.6);
+  }
+
+  .status-indicator.low {
+    @apply bg-[hsl(var(--low))];
+    box-shadow: 0 0 8px hsl(var(--low) / 0.6);
+  }
+
+  .status-indicator.info {
+    @apply bg-[hsl(var(--info))];
+    box-shadow: 0 0 8px hsl(var(--info) / 0.6);
+  }
+
+  .scrollbar-soc::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-soc::-webkit-scrollbar-track {
+    @apply bg-muted/30 rounded-full;
+  }
+
+  .scrollbar-soc::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/30 rounded-full hover:bg-muted-foreground/50;
+  }
+}

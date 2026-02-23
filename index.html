@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guardian View — SOC Portal</title>
+    <meta name="description" content="Guardian View — Security Operations Center Portal" />
+    <meta name="author" content="CAAAgencement" />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <!-- ============================================================
+         SÉCURITÉ — Content Security Policy
+         Restreint les sources autorisées pour chaque type de ressource
+         ============================================================ -->
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval';
+      style-src 'self' 'unsafe-inline';
+      connect-src 'self'
+        http://localhost:3001
+        https://login.microsoftonline.com
+        https://graph.microsoft.com
+        https://login.microsoft.com
+        wss://localhost:8080;
+      img-src 'self' data: blob: https:;
+      font-src 'self' data:;
+      frame-src 'none';
+      object-src 'none';
+      base-uri 'self';
+      form-action 'self';
+      upgrade-insecure-requests;
+    " />
+
+    <!-- SÉCURITÉ — Empêche le MIME sniffing -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+
+    <!-- SÉCURITÉ — Protection XSS legacy (IE/Edge) -->
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+
+    <!-- SÉCURITÉ — Anti-clickjacking -->
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+
+    <!-- SÉCURITÉ — Referrer Policy : ne pas leaker l'URL dans les requêtes externes -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
