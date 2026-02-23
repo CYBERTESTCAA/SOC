@@ -1,0 +1,12 @@
+name: Deploy Guardian View
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Deploy on VM
+        run: /opt/guardian-view/deploy.sh
